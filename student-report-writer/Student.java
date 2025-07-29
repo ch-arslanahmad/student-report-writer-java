@@ -73,11 +73,15 @@ public class Student {
             for(int i=0; i<subject.size(); i++) {
                 marksPercentage.set(i, percentage(marks.get(i),subjectTotalMarks.get(i)));
             }
-        } 
-
-
-        
+        }
     }
     
+    // to be fixed logic
+    int getTotalMarks() {
+        for(int i = 0; i<subject.size(); i++) {
+        TotalMarks = + marks.get(i);
+        }
+        return TotalMarks;
+    }
     
 }
