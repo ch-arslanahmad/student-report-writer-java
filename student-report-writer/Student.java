@@ -15,10 +15,11 @@ public class Student {
     private ArrayList<String> subject = new ArrayList<>();
     // data type cannot be primitive, hence a wrapper used, Integer for 'int' datatype.
     private ArrayList<Integer> subjectTotalMarks = new ArrayList<>();
-    private int TotalMarks;
+    private int totalMarks;
     private ArrayList<Integer> marks = new ArrayList<>();
     private int totalObtMarks;
     private ArrayList<Float> marksPercentage = new ArrayList<>();
+    private float totalPercentage;
   
     // Name method
     public String getName(Scanner input) {
@@ -31,6 +32,7 @@ public class Student {
         age = input.nextInt();
         return age;
     }
+    
     // student grade method
     public int getGradeYr(Scanner input) {
         gradeYr = input.nextInt();
@@ -42,6 +44,7 @@ public class Student {
     void addSubject(Scanner input) {
         subject.add(input.nextLine());
     }
+
 
     // adds Marks for each subject
     void setMarks(Scanner input) {
@@ -62,11 +65,35 @@ public class Student {
     }
 // anyway keep in mind: that subject and total & obtained marks will be equal obviosly, hence add a validation for it, if needed.
 
+    // fixed logic: Total Marks method
+    int getTotalMarks() {
+        // totalMarks
+        for(int i = 0; i<subjectTotalMarks.size(); i++) {
+        totalMarks += subjectTotalMarks.get(i);
+        }
 
+
+        return totalMarks;
+    }
+
+
+    int getTotalObtMarks() {
+            // total obtained-marks
+        for(int i = 0; i<marks.size(); i++) {
+        totalObtMarks += marks.get(i);
+        }
+        return totalObtMarks;
+    }
+
+
+
+    // find percentage
     float percentage(int num, int total) {
         float percentage = (float) num/ (float) total * 100f;
         return percentage;
     }
+    
+    // find percentage of specific subject
     void calculateSubjectPercentage() {
 
         if(subject.size() != 0) {
@@ -76,12 +103,22 @@ public class Student {
         }
     }
     
-    // to be fixed logic
-    int getTotalMarks() {
-        for(int i = 0; i<subject.size(); i++) {
-        TotalMarks = + marks.get(i);
+
+    // find Percentage as a whole
+/*
+- basically the formula to find percentages out of percentages(p) is:
+(p1/100) * (p2/100) * (pn/100) * 100
+ */
+float getTotalPercentage() {
+        // to find the maximum number to be the divisor
+
+        float temp = 1f;
+        for(int i = 0; i+1<marksPercentage.size(); i++) {
+        temp *= marksPercentage.get(i);
         }
-        return TotalMarks;
+        // multiply by 100 to get adjusted percentage
+        return totalPercentage * 100;
     }
+
     
 }
