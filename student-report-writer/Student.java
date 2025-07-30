@@ -42,7 +42,17 @@ public class Student {
 
     // add Subject
     void addSubject(Scanner input) {
-        subject.add(input.nextLine());
+
+        System.out.println("Type '0' to exit.");
+        int n = 0;
+        while (true) {
+        n+=1;
+        System.out.println("Enter subject#");
+        String a = subject.add(nextLine());
+        if(a == '0') {
+        return;
+        }
+        }
     }
 
 
@@ -52,11 +62,11 @@ public class Student {
         if(subject.size() != 0) {
             for(int i=0; i<subject.size(); i++) {
             System.out.print("Enter total marks of " + subject.get(i) + ": ");
-            // used set() method of ArrayList for Total marks of subject  
-            subjectTotalMarks.set(i, input.nextInt());
+            // used add() method of ArrayList for Total marks of subject: as add adds value even if list is empty
+            subjectTotalMarks.add(input.nextInt());
             System.out.print("Enter obtained marks of " + subject.get(i) + ": ");
-            // again set() method for obtained marks
-            marks.set(i, input.nextInt());
+            // again add() method for obtained marks
+            marks.add(input.nextInt());
             }
         }
         else {
@@ -71,21 +81,16 @@ public class Student {
         for(int i = 0; i<subjectTotalMarks.size(); i++) {
         totalMarks += subjectTotalMarks.get(i);
         }
-
-
         return totalMarks;
     }
 
-
+    // total obtained-marks
     int getTotalObtMarks() {
-            // total obtained-marks
         for(int i = 0; i<marks.size(); i++) {
         totalObtMarks += marks.get(i);
         }
         return totalObtMarks;
     }
-
-
 
     // find percentage
     float percentage(int num, int total) {
@@ -106,18 +111,19 @@ public class Student {
 
     // find Percentage as a whole
 /*
-- basically the formula to find percentages out of percentages(p) is:
-(p1/100) * (p2/100) * (pn/100) * 100
+simply it is an average of percentages:
+so optimally avgerage formula should be used.
+avg = sum of all values / total number of values
  */
 float getTotalPercentage() {
         // to find the maximum number to be the divisor
 
-        float temp = 1f;
-        for(int i = 0; i+1<marksPercentage.size(); i++) {
-        temp *= marksPercentage.get(i);
+        totalPercentage = 0f;
+        for(int i = 0; i<marksPercentage.size(); i++) {
+        totalPercentage += marksPercentage.get(i);
         }
         // multiply by 100 to get adjusted percentage
-        return totalPercentage * 100;
+        return totalPercentage / marksPercentage.size();
     }
 
     
