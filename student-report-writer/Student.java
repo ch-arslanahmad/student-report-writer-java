@@ -9,7 +9,7 @@ public class Student {
     private String name;
     private int age;
     private int gradeYr;
-
+    boolean isValid = true;
 
     // creating Arraylist: subject.
     private ArrayList<String> subject = new ArrayList<>();
@@ -30,17 +30,9 @@ public class Student {
     
     // student age method
     public int getAge(Scanner input) {
+
         System.out.print("Enter your age: ");
-        try {
         age = input.nextInt();
-            if(age<3 || age>100) {
-                throw new Exception("Age must be between 3 & 100");
-            }
-        }
-        catch (Exception e) {
-            System.out.println("Invalid! Enter valid age.");
-            System.out.print(e.getMessage());
-        }
         // this is to consume the newline character left by input
         input.nextLine();
         return age;
@@ -48,20 +40,10 @@ public class Student {
     
     // student grade method
     public int getGradeYr(Scanner input) {
-    try {
         System.out.print("Enter your grade year: ");
-        int a = input.nextInt();
-         if (a < 1 || a> 10) {
-            throw new Exception("Grade year must be betweeen 1 and 10.");
-         }
-    }
-    catch (Exception e) {
-        System.out.println("Invalid! Enter valid grade year (from 1-10).");
-    }
-
+        gradeYr = input.nextInt();
         // this is to consume the newline character left by input
         input.nextLine();
-
         return gradeYr;
 
     }
