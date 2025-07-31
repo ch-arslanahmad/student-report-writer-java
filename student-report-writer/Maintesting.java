@@ -3,10 +3,7 @@
 // this was made to solve the issue of adding subjects like newline and spaces and input problem
 
 import java.util.Scanner;
-import java.util.ArrayList;
 class Maintesting {
-    private ArrayList<String> subject = new ArrayList<>();
-
     // this code that can print details in the console
   public static void main(String[] args) {
     // Making Scanner input Object
