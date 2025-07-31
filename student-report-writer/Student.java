@@ -21,29 +21,34 @@ public class Student {
     private ArrayList<Float> marksPercentage = new ArrayList<>();
     private float totalPercentage;
   
-    // Name method
-    public String getName(Scanner input) {
+
+    void setDetails(Scanner input) {
+        // get name
         System.out.print("Enter your name: ");
-        name = input.nextLine();
+        name = input.nextLine();       
+        // get age
+        System.out.print("Enter your age: ");
+        age = input.nextInt();
+        // get grade year
+        System.out.print("Enter your grade year: ");
+        gradeYr = input.nextInt();
+
+        // this is to consume the newline character left by input
+        input.nextLine();
+
+    }
+    // Name getter
+    public String getName() {
         return name;
     }
     
-    // student age method
-    public int getAge(Scanner input) {
-
-        System.out.print("Enter your age: ");
-        age = input.nextInt();
-        // this is to consume the newline character left by input
-        input.nextLine();
+    // student age getter
+    public int getAge() {
         return age;
     }
     
-    // student grade method
-    public int getGradeYr(Scanner input) {
-        System.out.print("Enter your grade year: ");
-        gradeYr = input.nextInt();
-        // this is to consume the newline character left by input
-        input.nextLine();
+    // student grade getter
+    public int getGradeYr() {
         return gradeYr;
 
     }
@@ -57,31 +62,51 @@ public class Student {
             System.out.print("Enter subject#" + n + ": ");
             String a = input.nextLine();
             if(a.equals("0")) {
-            break;
+                break;
             }
             else {
-            subject.add(a);
+                subject.add(a);
             }
             n++;
 
         }
     }
 
-    String getSubject(int index) {
-        if(index<subject.size()) {
-        return subject.get(index);
+    // find maxlength for dynamic output
+    int findMaxlength() {
+        int max = subject.get(0).length();
+        for(int i=1; i<subject.size(); i++) {
+            if(max<subject.get(i).length()) {
+                max = subject.get(i).length();
+            }
         }
-        else return "Out of Range";
+        if(max<10)
+            max = 10;
+        return max;
+    }
+    // getter for subject
+    String getSubject(int i) {
+        return subject.get(i);
+    }
+    // 'size' of subject arraylist
+    int sizeSubject() {
+        return subject.size();
     }
 
     // adds Marks for each subject
     void setMarks(Scanner input) {
         // runs if subject is not 0.  
-        if(subject.size() != 0) {
-            for(int i=0; i<subject.size(); i++) {
+        if(sizeSubject() != 0) {
+            for(int i=0; i<sizeSubject(); i++) {
             System.out.print("Enter total marks of " + subject.get(i) + ": ");
             // used add() method of ArrayList for Total marks of subject: as add adds value even if list is empty
-            subjectTotalMarks.add(input.nextInt());
+            int subjectMarks = input.nextInt();
+            if(subjectMarks != 0) {
+                subjectTotalMarks.add(subjectMarks);
+            }
+            else {
+                System.out.println("Total marks cannot be zero!");
+            }
             System.out.print("Enter obtained marks of " + subject.get(i) + ": ");
             // again add() method for obtained marks
             marks.add(input.nextInt());
@@ -95,6 +120,27 @@ public class Student {
         input.nextLine();
     }
 // anyway keep in mind: that subject and total & obtained marks will be equal obviosly, hence add a validation for it, if needed.
+
+    // getter for subject total marks
+    int getsubjectTotalMarks(int i) {
+        return subjectTotalMarks.get(i);
+    }
+
+    // 'size' of marks arraylist
+    int sizesubjectMarks() {
+        return subjectTotalMarks.size();
+    }
+
+    // getter for subject obtained marks
+    int getsubjectObtMarks(int i) {
+        return marks.get(i);
+    }
+
+
+    // 'size' of obtained marks arraylist
+    int sizeObtMarks() {
+        return marks.size();
+    }
 
     // fixed logic: Total Marks method
     int getTotalMarks() {
@@ -125,12 +171,23 @@ public class Student {
         if(subject.size() != 0) {
             for(int i=0; i<subject.size(); i++) {
                 marksPercentage.add(percentage(marks.get(i),subjectTotalMarks.get(i)));
-                // print the percentage of each subject;
-                System.out.println("Percentage of " + subject.get(i) + " is: " + marksPercentage.get(i) + "%");
             }
         }
     }
     
+
+    // getter for subject obtained marks
+    float getsPercentages(int i) {
+        calculateSubjectPercentage();
+        return marksPercentage.get(i);
+    }
+
+
+    // 'size' of obtained marks arraylist
+    int sizePercentages() {
+        return marksPercentage.size();
+    }
+
 
     // find Percentage as a whole
 /*
@@ -138,16 +195,31 @@ simply it is an average of percentages:
 so optimally average formula should be used.
 avg = sum of all values / total number of values
  */
-float getTotalPercentage() {
+void calculateTotalPercentage() {
         // to find the maximum number to be the divisor
-
-        totalPercentage = 0f;
-        for(int i = 0; i<marksPercentage.size(); i++) {
-        totalPercentage += marksPercentage.get(i);
+        try {
+        if(marksPercentage.size() > 0) {
+            totalPercentage =  0f;
+                for(int i = 0; i<marksPercentage.size(); i++) {
+                    totalPercentage += marksPercentage.get(i);
+                }
+        totalPercentage = totalPercentage / marksPercentage.size();
         }
-        // multiply by 100 to get adjusted percentage
-        return totalPercentage / marksPercentage.size();
+        else {
+            throw new Exception("You need subjects to calculate percentages of.");
+        }         
+        } catch (Exception e) {
+            System.out.println("Error occured");
+            e.printStackTrace();
+        }
+
     }
+
+float getTotalPercentage() {
+    calculateTotalPercentage();
+    return totalPercentage;
+}
+
 
     
 }
