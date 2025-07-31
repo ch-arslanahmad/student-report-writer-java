@@ -107,7 +107,9 @@ public class Student {
 
         if(subject.size() != 0) {
             for(int i=0; i<subject.size(); i++) {
-                marksPercentage.set(i, percentage(marks.get(i),subjectTotalMarks.get(i)));
+                marksPercentage.add(percentage(marks.get(i),subjectTotalMarks.get(i)));
+                // print the percentage of each subject;
+                System.out.println("Percentage of " + subject.get(i) + " is: " + marksPercentage.get(i) + "%");
             }
         }
     }
