@@ -23,18 +23,21 @@ public class Student {
   
     // Name method
     public String getName(Scanner input) {
+        System.out.print("Enter your name: ");
         name = input.nextLine();
         return name;
     }
     
     // student age method
     public int getAge(Scanner input) {
+        System.out.print("Enter your age: ");
         age = input.nextInt();
         return age;
     }
     
     // student grade method
     public int getGradeYr(Scanner input) {
+        System.out.print("Enter your grade year: ");
         gradeYr = input.nextInt();
         return gradeYr;
     }
