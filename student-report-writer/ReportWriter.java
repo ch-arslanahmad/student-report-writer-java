@@ -8,11 +8,12 @@ public class ReportWriter {
     void writeDetails(Scanner input) {
         Student details = new Student();
         try {
-            Scanner writer = new Scanner(System.in);
-            FileWriter thefile = new FileWriter("Report.txt");
+            FileWriter thefile = new FileWriter("Report.txt", true);
             thefile.write("Name: " + details.getName(input));
             thefile.write("\tAge: " + details.getAge(input));
             thefile.write("\tGrade Level: " + details.getGradeYr(input));
+            thefile.write("\nSubjects | Total Marks | Obtained Marks");            
+            thefile.close();
         } catch (IOException e) {
             System.out.println("Error Occured");
             e.printStackTrace();
@@ -30,8 +31,10 @@ public class ReportWriter {
            else {
             System.out.println("File already exists.");
            }
-        writeDetails();
-        } catch (Exception e) {
+        writeDetails(new Scanner(System.in));
+        }
+        catch (Exception e) {
+            System.out.println("Error occured when making a file!");
         }
 
     }
