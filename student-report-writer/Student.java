@@ -25,15 +25,22 @@ public class Student {
     public String getName(Scanner input) {
         System.out.print("Enter your name: ");
         name = input.nextLine();
-
         return name;
     }
     
     // student age method
     public int getAge(Scanner input) {
         System.out.print("Enter your age: ");
+        try {
         age = input.nextInt();
-
+            if(age<3 || age>100) {
+                throw new Exception("Age must be between 3 & 100");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Invalid! Enter valid age.");
+            System.out.print(e.getMessage());
+        }
         // this is to consume the newline character left by input
         input.nextLine();
         return age;
@@ -41,9 +48,16 @@ public class Student {
     
     // student grade method
     public int getGradeYr(Scanner input) {
+    try {
         System.out.print("Enter your grade year: ");
-        gradeYr = input.nextInt();
-
+        int a = input.nextInt();
+         if (a < 1 || a> 10) {
+            throw new Exception("Grade year must be betweeen 1 and 10.");
+         }
+    }
+    catch (Exception e) {
+        System.out.println("Invalid! Enter valid grade year (from 1-10).");
+    }
 
         // this is to consume the newline character left by input
         input.nextLine();
@@ -133,7 +147,7 @@ public class Student {
     // find Percentage as a whole
 /*
 simply it is an average of percentages:
-so optimally avgerage formula should be used.
+so optimally average formula should be used.
 avg = sum of all values / total number of values
  */
 float getTotalPercentage() {
