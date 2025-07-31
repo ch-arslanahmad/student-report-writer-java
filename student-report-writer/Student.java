@@ -46,12 +46,13 @@ public class Student {
         System.out.println("Type '0' to exit.");
         int n = 0;
         while (true) {
-        n+=1;
-        System.out.println("Enter subject#");
-        String a = subject.add(nextLine());
-        if(a == '0') {
-        return;
-        }
+            n+=1;
+            System.out.print("Enter subject#" +n + ": ");
+            String a = input.nextLine();
+            subject.add(a);
+            if(a.equals("0")) {
+            return;
+            }
         }
     }
 
