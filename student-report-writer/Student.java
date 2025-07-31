@@ -25,6 +25,7 @@ public class Student {
     public String getName(Scanner input) {
         System.out.print("Enter your name: ");
         name = input.nextLine();
+
         return name;
     }
     
@@ -32,6 +33,9 @@ public class Student {
     public int getAge(Scanner input) {
         System.out.print("Enter your age: ");
         age = input.nextInt();
+
+        // this is to consume the newline character left by input
+        input.nextLine();
         return age;
     }
     
@@ -39,23 +43,31 @@ public class Student {
     public int getGradeYr(Scanner input) {
         System.out.print("Enter your grade year: ");
         gradeYr = input.nextInt();
+
+
+        // this is to consume the newline character left by input
+        input.nextLine();
+
         return gradeYr;
+
     }
 
 
     // add Subject
     void addSubject(Scanner input) {
-
         System.out.println("Type '0' to exit.");
-        int n = 0;
+        int n = 1;
         while (true) {
-            n+=1;
-            System.out.print("Enter subject#" +n + ": ");
+            System.out.print("Enter subject#" + n + ": ");
             String a = input.nextLine();
-            subject.add(a);
             if(a.equals("0")) {
-            return;
+            break;
             }
+            else {
+            subject.add(a);
+            }
+            n++;
+
         }
     }
 
@@ -76,6 +88,9 @@ public class Student {
         else {
             System.out.print("No subjects were added!");
         }
+        
+        // this is to consume the newline character left by input
+        input.nextLine();
     }
 // anyway keep in mind: that subject and total & obtained marks will be equal obviosly, hence add a validation for it, if needed.
 
