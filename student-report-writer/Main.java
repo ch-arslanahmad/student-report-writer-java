@@ -13,7 +13,6 @@ public class Main {
     student.getName(input);
     student.getAge(input);
     student.getGradeYr(input);
-
     student.addSubject(input);
     student.setMarks(input);
     input.close();
