@@ -10,7 +10,7 @@ public class ReportWriter {
         // create an object
         try {
             // PrintWriter Object: used it as its the best for formatted writing
-            PrintWriter thefile = new PrintWriter("Report.txt");
+            PrintWriter thefile = new PrintWriter("student-report-writer-java/student-report-writer/Report.txt");
 
             // write function to write details
             thefile.write("Name: " + student.getName());
@@ -49,7 +49,7 @@ public class ReportWriter {
     // try-catch for file-making
         try {
             // making File object
-           File makeFile = new File("Report.txt");
+           File makeFile = new File("student-report-writer-java/student-report-writer/Report.txt");
             // conditional to run when file doesnt exist
            if(!makeFile.exists()) {
             // function to make a file
