@@ -67,6 +67,12 @@ public class Student {
         }
     }
 
+    String getSubject(int index) {
+        if(index<subject.size()) {
+        return subject.get(index);
+        }
+        else return "Out of Range";
+    }
 
     // adds Marks for each subject
     void setMarks(Scanner input) {
