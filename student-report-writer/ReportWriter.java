@@ -10,7 +10,7 @@ public class ReportWriter {
         // create an object
         try {
             // PrintWriter Object: used it as its the best for formatted writing
-            PrintWriter thefile = new PrintWriter("student-report-writer-java/student-report-writer/Report.txt");
+            PrintWriter thefile = new PrintWriter("student-report-writer/Report.txt");
 
             // write function to write details
             thefile.write("Name: " + student.getName());
@@ -49,22 +49,26 @@ public class ReportWriter {
     // try-catch for file-making
         try {
             // making File object
-           File makeFile = new File("student-report-writer-java/student-report-writer/Report.txt");
+           File makeFile = new File("student-report-writer/Report.txt");
             // conditional to run when file doesnt exist
            if(!makeFile.exists()) {
             // function to make a file
             makeFile.createNewFile();
             System.out.println("File successfully created.");
             // now file exists hence the value
+            // Write Report in the file
+
+            // writing in created file
+            writeDetails(student);
             fileExists = true;
             // calling the writeDetails method
-            writeDetails(student);
+            // writeDetails(student);
                     // conditional to see if file is not empty.
                 if(makeFile.exists() && makeFile.length() != 0) {
                     System.out.println("Report successfully added in File.");
                 }
                 else {
-                    System.out.println("Unable to make file file or add the Report in file.");
+                    System.out.println("Unable to make file, or add the Report in file.");
                 }
             }
            // when file exists
@@ -83,6 +87,7 @@ public class ReportWriter {
         }
         catch (Exception e) {
             System.out.println("Error occured when making a file!");
+            e.printStackTrace();
         }
 
     }
