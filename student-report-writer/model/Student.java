@@ -1,3 +1,4 @@
+package model;
 
 // import Scanner: input
 import java.util.Scanner;
@@ -163,7 +164,7 @@ public class Student {
     }
 
     // fixed logic: Total Marks method
-    int getTotalMarks(ArrayList<Integer> subjectTotalMarks) {
+    public int getTotalMarks(ArrayList<Integer> subjectTotalMarks) {
         // totalMarks
         for (int i = 0; i < subjectTotalMarks.size(); i++) {
             totalMarks += subjectTotalMarks.get(i);
@@ -172,7 +173,7 @@ public class Student {
     }
 
     // total obtained-marks
-    int getTotalObtMarks(ArrayList<Integer> marks) {
+    public int getTotalObtMarks(ArrayList<Integer> marks) {
         for (int i = 0; i < marks.size(); i++) {
             totalObtMarks += marks.get(i);
         }
@@ -180,12 +181,12 @@ public class Student {
     }
 
     // find percentage
-    float percentage(int num, int total) {
+    public float percentage(int num, int total) {
         return (float) num / (float) total * 100f;
     }
 
     // find percentage of specific subject
-    ArrayList<Float> calculateSubjectPercentage(ArrayList<String> subjects, ArrayList<Integer> subjectTotalMarks,
+    public ArrayList<Float> calculateSubjectPercentage(ArrayList<String> subjects, ArrayList<Integer> subjectTotalMarks,
             ArrayList<Integer> marks) {
 
         ArrayList<Float> subjectPercentages = new ArrayList<>();
@@ -223,7 +224,7 @@ public class Student {
 
     }
 
-    float getTotalPercentage(ArrayList<Float> marksPercentage) {
+    public float getTotalPercentage(ArrayList<Float> marksPercentage) {
         calculateTotalPercentage(marksPercentage);
         return totalPercentage;
     }
