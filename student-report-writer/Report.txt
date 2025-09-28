@@ -1,8 +1,6 @@
-Name: Arslan	Age: 20		Grade Level: 13
+Name: ali	Age: 10		Grade Level: 10
 
 Subjects   | Total Marks | Obtained Marks | Percentages
-Maths      | 100         | 77             | 77.00 %
-English    | 100         | 90             | 90.00 %
-OOP        | 100         | 99             | 99.00 %
+math       | 100         | 98             | 98.00 %
 --------------------------------------------------
-Total      | 300         | 266            |  88.67%
+Total      | 100         | 98             |  98.00%
