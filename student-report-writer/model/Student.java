@@ -2,6 +2,9 @@ package model;
 
 // import Scanner: input
 import java.util.Scanner;
+
+import display.Input;
+
 // import Arraylist
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,15 +70,15 @@ public class Student {
     }
 
     // add Subject
-    public ArrayList<String> addSubject(Scanner input) {
+    public ArrayList<String> addSubject(Scanner scanner, Input input) {
         ArrayList<String> subject = new ArrayList<>();
 
         System.out.println("Type '0' to exit.");
         int n = 1;
         while (true) {
             System.out.print("Enter subject#" + n + ": ");
-            String a = input.nextLine();
-            if (a.equals("0")) {
+            String a = input.getNormalInput(scanner);
+            if (a.equals("0") || a.equals("-1")) {
                 break;
             } else {
                 subject.add(a);
@@ -110,31 +113,23 @@ public class Student {
     }
 
     // ? assumes multiple subjects exist - (Subject) TOTAL MARKS
-    public int setSubjectTotalMarks(String subject, Scanner input) {
+    public int setSubjectTotalMarks(String subject, Scanner scanner, Input input) {
         while (true) {
             System.out.print("Enter total marks of " + subject + ": ");
-            if (input.hasNextInt()) { // using it for validation
-                int subjectTotalMarks = input.nextInt();
-                input.nextLine(); // consume newline (left by enter)
-                if (subjectTotalMarks > 0) {
-                    return subjectTotalMarks;
-                } else {
-                    System.out.println("Total marks must be greater than zero!");
-                }
+            int subjectTotalMarks = input.getNumInput(scanner);
+            if (subjectTotalMarks > 0) {
+                return subjectTotalMarks;
             } else {
-                System.out.println("Please enter a valid integer.");
-                input.nextLine(); // remove invalid input
+                System.out.println("Total marks must be greater than zero!");
             }
         }
     }
 
     // assumes multiple subjects exist // ... (Subject) OBT MARKS
-    public int setSubjectMarks(String subject, int subjectMarks, Scanner input) {
+    public int setSubjectMarks(String subject, int subjectMarks, Scanner scanner, Input input) {
         while (true) {
             System.out.print("Enter obtained marks of " + subject + ": ");
-            if (input.hasNextInt()) { // using it for validation
-                int obtMarks = input.nextInt();
-                input.nextLine(); // consume newline (left by ENTER)
+            int obtMarks = input.getNumInput(scanner);
                 if (obtMarks < 0) {
                     System.out.println("Obtained marks cannot be negative.");
                 } else if (obtMarks > subjectMarks) {
@@ -142,21 +137,17 @@ public class Student {
                 } else {
                     return obtMarks;
                 }
-            } else {
-                System.out.println("Please enter a valid integer.");
-                input.nextLine(); // remove invalid input
             }
         }
-    }
 
     // adds Marks for each subject
-    public Map<String, Marks> setAllMarks(ArrayList<String> subjects, Scanner input) {
+    public Map<String, Marks> setAllMarks(ArrayList<String> subjects, Scanner scanner, Input input) {
 
         Map<String, Marks> marks = new HashMap<>();
 
         for (String subject : subjects) {
-            int total = setSubjectTotalMarks(subject, input);
-            int obtained = setSubjectMarks(subject, total, input);
+            int total = setSubjectTotalMarks(subject, scanner, input);
+            int obtained = setSubjectMarks(subject, total,scanner, input);
 
             marks.put(subject, new Marks(total, obtained));
         }

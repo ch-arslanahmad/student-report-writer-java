@@ -13,14 +13,10 @@ public class Input {
         // set name
         System.out.print("Enter your age: ");
         int age = getNumInput(input);
-        student.setAge(age);
-        student.setAge(input.nextInt()); // set age year
+        student.setAge(age); // set age year
         System.out.print("Enter your grade year: ");
         int gradeYr = getNumInput(input);
         student.setGradeYr(gradeYr);
-
-        // this is to consume the newline character left by input
-        input.nextLine();
 
         return student;
 
@@ -83,7 +79,7 @@ public class Input {
 
                 return number;
             } catch (NumberFormatException e) {
-                System.out.println("Enter valid Integer value: ");
+                System.out.println("Enter valid Integer value. ");
             }
         }
     }

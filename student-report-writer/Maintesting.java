@@ -2,8 +2,6 @@
 
 // this was made to solve the issue of adding subjects like newline and spaces and input problem
 
-import java.util.Scanner;
-
 class Maintesting {
   // this code that can print details in the console
   public static void main(String[] args) {
