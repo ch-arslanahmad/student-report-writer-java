@@ -103,7 +103,7 @@ Alternatively, displaying the report directly in the console
 
 ## Sample Output
 
-The output is at [Report-File](student-report-writer/Report.txt).
+The output is at [Report-File](src/display/Report.txt).
 
 ---
 
