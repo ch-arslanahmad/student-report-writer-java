@@ -15,7 +15,7 @@ public class ReportWriter {
 
     // PrintWriter Object: used it as its the best for formatted writing
     PrintWriter createFile() throws IOException {
-        return new PrintWriter("student-report-writer-java/student-report-writer/Report.txt");
+        return new PrintWriter("student-report-writer-java/src/display/Report.txt");
     }
 
     boolean writeStudentInfo(Student student, PrintWriter thefile) {
@@ -254,7 +254,7 @@ public class ReportWriter {
         reportMaker(student, data);
         System.out.print("\n");
         try {
-            Files.lines(Paths.get("student-report-writer-java/student-report-writer/Report.txt"))
+            Files.lines(Paths.get("src/display/Report.txt"))
                     .forEach(System.out::println);
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
